@@ -1,1 +1,8 @@
-<h1>Landmarks Index Page</h1>
+<h1>Landmarks</h1>
+<ol>
+  <% @landmarks.each do |landmark| %>
+    <li><a href="/landmarks/show/<%= landmark.id %>"><%= landmark.name %></a></li>
+  <% end %>
+</ol>
+
+<a href="/">Back to Home</a>

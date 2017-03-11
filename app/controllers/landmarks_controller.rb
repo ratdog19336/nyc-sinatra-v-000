@@ -1,11 +1,13 @@
 require 'pry'
 class LandmarksController < ApplicationController
 
-  get '/landmarks/show' do
+  get '/landmarks/show/:id' do
+    @landmark = Landmark.find_by(id: params[:id])
     erb :'/landmarks/show'
   end
 
-  get '/landmarks/edit' do
+  get '/landmarks/:id/edit' do
+    @landmark = Landmark.find_by(id: params[:id])
     erb :'/landmarks/edit'
   end
 
@@ -14,6 +16,7 @@ class LandmarksController < ApplicationController
   end
 
   get '/landmarks/index' do
+    @landmarks = Landmark.all
     erb :'/landmarks/index'
   end
 end

@@ -1,1 +1,15 @@
-<h1>Figures Show page</h1>
+<h1>Show Page</h1>
+<h3>Figure ID: <%= @figure.id %></h3>
+<h3>Figure Name: <%= @figure.name %></h3>
+
+<h3>Landmarks</h3>
+  <% @figure.landmarks.each do |landmark| %>
+    <li><a href="/landmarks/show/<%= landmark.id %>"><%=landmark.name %></a></li>
+  <% end %>
+
+<h3>Titles</h3>
+  <% @figure.titles.each do |title| %>
+    <li><a href="/titles/show/<%= title.id %>"><%=title.name %></a></li>
+  <% end %>
+<br><br>
+<a href="/figures/index">Return to Index</a>

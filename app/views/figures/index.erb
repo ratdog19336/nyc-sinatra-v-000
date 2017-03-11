@@ -1,1 +1,8 @@
-<h1>Figures Index Page</h1>
+<h1>Figures</h1>
+<ol>
+  <% @figures.each do |figure| %>
+    <li><a href="/figures/show/<%=figure.id %>"><%=figure.name %></a></li>
+  <% end %>
+</ol>
+
+<a href="/">Back to Home</a>

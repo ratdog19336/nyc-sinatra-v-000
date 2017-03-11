@@ -1,11 +1,7 @@
 require 'pry'
 class FiguresController < ApplicationController
 
-  get '/figures/show' do
-    erb :'/figures/show'
-  end
-
-  get '/figures/edit' do
+  get '/figures/:id/edit' do
     erb :'/figures/edit'
   end
 
@@ -13,7 +9,22 @@ class FiguresController < ApplicationController
     erb :'/figures/new'
   end
 
+  post '/figures/new' do
+    raise params.inspect
+    @figure = Figure.create(name: params[:figure][:name])
+    @figure.titles = Title.titles(params)
+    @figure.landmarks = Landmark.landmarks(params)
+    # binding.pry
+    redirect "/figures/show/#{@figure.id}"
+  end
+
+  get '/figures/show/:id' do
+    @figure = Figure.find_by(id: params[:id])
+    erb :'/figures/show'
+  end
+
   get '/figures/index' do
+    @figures = Figure.all
     erb :'/figures/index'
   end
 end
