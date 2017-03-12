@@ -7,13 +7,13 @@
     <input id="title_<%= title.id%>"  type="checkbox" name="figure[title_ids][]" value="<%= title.id %>"><%= title.name %></input>
   <% end %><br><br>
 
-  Or Create a New Title: <input type="text" name="title[name]" value="">
+  Or Create a New Title: <input id="new_title" type="text" name="title[name]" value="">
   <br><br>
 
   Please pick Landmarks: <%Landmark.all.each do |landmark| %>
     <input id="landmark_<%= landmark.id%>" type="checkbox" name="figure[landmark_ids][]" value="<%= landmark.id %>"><%= landmark.name %></input>
   <% end %><br><br>
-  Or Create a New landmark: <input type="text" name="landmark[name]" value="">
+  Or Create a New landmark: <input id="new_landmark" type="text" name="landmark[name]" value="">
 
   <br><br>
   <input type="submit" name="" value="Create New Figure">

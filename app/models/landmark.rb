@@ -2,6 +2,7 @@ class Landmark < ActiveRecord::Base
   belongs_to :figure
 
   def self.landmarks(params)
+    binding.pry
     if params[:landmark][:name] != ""
       landmark = Landmark.find_or_create_by(name: params[:landmark][:name])
       landmarks = params[:figure][:landmark_ids]
