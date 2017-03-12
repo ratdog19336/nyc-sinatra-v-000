@@ -1,8 +1,23 @@
 <h1>Landmarks</h1>
-<ol>
-  <% @landmarks.each do |landmark| %>
-    <li><a href="/landmarks/show/<%= landmark.id %>"><%= landmark.name %></a></li>
-  <% end %>
-</ol>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Year Completed</th>
+  </tr>
+  <tr>
+    <td>
+      <% @landmarks.each do |landmark| %>
+        <li><a href="/landmarks/<%= landmark.id %>"><%= landmark.name %></a></li>
+      <% end %>
+    </td>
+    <td>
+      <% @landmarks.each do |landmark| %>
+        <li><%= landmark.year_completed %></li>
+      <% end %>
+    </td>
+  </tr>
+</table>
 
+<a href="/landmarks/new">Create a New Landmark</a>
+<br>
 <a href="/">Back to Home</a>

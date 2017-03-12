@@ -18,4 +18,15 @@ class Landmark < ActiveRecord::Base
     end
     new_landmark_array
   end
+
+  def self.update_landmarks(params)
+    @figure = Figure.find_by(id: params[:id])
+    landmarks = params[:figure][:landmark_ids]
+    new_landmark = Landmark.find_or_create_by(name: params[:landmark][:name])
+    landmarks << new_landmark.id.to_s
+    new_landmark_array = landmarks.collect do |landmark_id|
+      Landmark.find_by(id: landmark_id)
+    end
+    new_landmark_array
+  end
 end

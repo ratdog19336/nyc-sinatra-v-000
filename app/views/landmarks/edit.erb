@@ -1,1 +1,21 @@
-<h1>Landmarks Edit Page</h1>
+<h1>Edit Landmarks Page</h1>
+<form action="/landmarks/<%= @landmark.id %>" method="post">
+  Landmark Name:<input id="name" type="text" name="landmark[name]" value="<%= @landmark.name %>">
+  <br><br>
+
+  Landmark Year Completed: <input id="year_completed" type="text" name="landmark[year_completed]" value="<%= @landmark.year_completed %>">
+  <br><br>
+
+
+
+  Please pick Figures: <%Figure.all.each do |figure| %>
+
+    <input id="figure_<%= figure.id %>" type="checkbox" name="landmark[figure_ids][]" value="<%= figure.id %>" <%='checked' if @landmark.figure_id == figure %>><%= figure.name %></input>
+  <% end %>
+
+  <br><br>
+  Or Create a New Figure: <input id="new_figure" type="text" name="figure[name]" value="">
+
+  <br><br>
+  <input type="submit" name="" value="Edit Landmark">
+</form>

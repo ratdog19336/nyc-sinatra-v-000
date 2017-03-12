@@ -2,6 +2,7 @@ require 'pry'
 class FiguresController < ApplicationController
 
   get '/figures/:id/edit' do
+    @figure = Figure.find_by(id: params[:id])
     erb :'/figures/edit'
   end
 
@@ -10,24 +11,32 @@ class FiguresController < ApplicationController
   end
 
   post '/figures' do
-    @figure = Figure.create(name: params[:figure][:name])
-    @figure.titles = Title.check_or_create_titles(params)
-    # binding.pry
-    # @figure.landmarks = Landmark.check_or_create_landmarks(params)
+    @figure = Figure.create(params[:figure])
     if !params[:landmark][:name].empty?
       @figure.landmarks << Landmark.create(params[:landmark])
     end
+
+    if !params[:title][:name].empty?
+      @figure.titles << Title.create(params[:title])
+    end
     @figure.save
-    redirect "/figures/show/#{@figure.id}"
+    redirect "/figures/#{@figure.id}"
   end
 
-  get '/figures/show/:id' do
+  post '/figures/:id' do
+    @figure = Figure.find_by(id: params[:id])
+    @figure.update(name: params[:figure][:name])
+    @figure.landmarks = Landmark.update_landmarks(params)
+  end
+
+  get '/figures/:id' do
     @figure = Figure.find_by(id: params[:id])
     erb :'/figures/show'
   end
 
-  get '/figures/index' do
+  get '/figures' do
     @figures = Figure.all
     erb :'/figures/index'
   end
+
 end
