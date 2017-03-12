@@ -6,7 +6,7 @@ class Title < ActiveRecord::Base
     if params[:title][:name] != ""
       title = Title.find_or_create_by(name: params[:title][:name])
       titles = params[:figure][:title_ids]
-      titles << title.id.to_s
+      # titles << title.id.to_s
       new_title_array = titles.collect do |title_id|
         Title.find_by(id: title_id)
       end

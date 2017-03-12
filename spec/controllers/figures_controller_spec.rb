@@ -38,7 +38,6 @@ describe FiguresController do
   end
 
   it "allows you to create a new figure with a landmark" do
-    binding.pry
     visit '/figures/new'
     fill_in :figure_name, :with => "Doctor Who"
     check "landmark_#{Landmark.first.id}"

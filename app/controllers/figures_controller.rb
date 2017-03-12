@@ -12,7 +12,6 @@ class FiguresController < ApplicationController
   post '/figures/new' do
     @figure = Figure.create(name: params[:figure][:name])
     @figure.titles = Title.titles(params)
-    binding.pry
     @figure.landmarks = Landmark.landmarks(params)
     @figure.save
     redirect "/figures/show/#{@figure.id}"
